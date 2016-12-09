@@ -1,5 +1,5 @@
-repo-2
-@file-6
+@repo-1
+@file-65
 Scenario: User is able to log what Time they Arrived
 Given I have accessed Users Timecard
 When I tap the Arrival button
