@@ -1,0 +1,47 @@
+{
+    "featureFiles": [
+        {
+            "respositoryId": 1,
+            "fileId": 1,
+            "fileName": "enter_time.feature",
+            "numberOfLines": 7,
+            "fileContent": [
+                "Given I am a current employee",
+                "When I enter my timesheet",
+                "Then I am shown a summary of what I entered",
+                "Given I am a current employee",
+                "When I enter more time off than I have",
+                "Then I am shown an error",
+                "And I am shown my pto balance"
+            ]
+        },
+        {
+            "respositoryId": 2,
+            "fileId": 2,
+            "fileName": "view_interests.feature",
+            "numberOfLines": 3,
+            "fileContent": [
+                "Given I am an account manager",
+                "When I enter the name of an investor",
+                "Then I am shown their interests"
+            ]
+        }   ,
+        {
+            "respositoryId": 2,
+            "fileId": 3,
+            "fileName": "add_interests.feature",
+            "numberOfLines": 7,
+            "fileContent": [
+                "Given I am an account manager",
+                "When I enter the name of an investor",
+                "And I enter a new interest for them",
+                "Then the interest is saved",
+                "Given I am an account manger",
+                "When I enter the name of an investor",
+                "And I enter a duplicate interest",
+                "Then I am shown an error",
+                "And the interest is not saved"
+            ]
+        }      
+    ]
+}
