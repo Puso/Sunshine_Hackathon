@@ -12,7 +12,10 @@ namespace FeatureFileService
     public interface IService1
     {
         [OperationContract]
-        string GetData(string value);
+        string GetStepText(string value);
+
+        [OperationContract]
+        string SaveStepText(string step);
 
         [OperationContract]
         CompositeType GetDataUsingDataContract(CompositeType composite);
@@ -41,5 +44,7 @@ namespace FeatureFileService
             get { return stringValue; }
             set { stringValue = value; }
         }
+
+        /*db.BddStep.insertMany([    {"stepText":"Given I am on some page", "repoName": "marvel"},     {"stepText":"Then I should see some heading", "repoName": "sunshine"}    ]);*/
     }
 }
