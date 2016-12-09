@@ -1,4 +1,4 @@
-export class Step {
+export class StepData {
     respositoryId: number;
     fileId: number;
     numberOfLines: number;
