@@ -1,0 +1,14 @@
+{
+    "repositories": [
+        {
+            "repositoryId": 5,
+            "repositoryName": "ElectionPolling",
+            "repositoryOwner": "Matthew Weinstock"
+        },
+        {
+            "repositoryId": 6,
+            "repositoryName": "FantasyFootball",
+            "repositoryOwner": "Ross Fernhold"
+        }        
+    ]
+}
