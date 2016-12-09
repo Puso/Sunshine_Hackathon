@@ -1,10 +1,10 @@
-import { KIHTBPage } from './app.po';
+import { FrontendPage } from './app.po';
 
-describe('kihtb App', function() {
-  let page: KIHTBPage;
+describe('frontend App', function() {
+  let page: FrontendPage;
 
   beforeEach(() => {
-    page = new KIHTBPage();
+    page = new FrontendPage();
   });
 
   it('should display message saying app works', () => {
