@@ -18,13 +18,24 @@ namespace backend.Controllers
             return Ok(result);
         }
 
-        public async Task<IHttpActionResult> GetStepDefinitions(string partialText)
+        public async Task<List<string>> GetStepDefinitions(string partialText)
         {
             ETLRunner etl = new ETLRunner();
             var result = await etl.GetSteps(partialText);
-            return Ok(result);
+            List<string> filteredSteps = new List<string>();
+
+            foreach (var file in result)
+            {
+                var count = file.NumberOfLines;
+                for (int i = 0; i < count; i++)
+                {
+                    if (file.FileContent[i].Contains(partialText))
+                    {
+                        filteredSteps.Add(file.FileContent[i]);
+                    }
+                } 
+            }
+            return filteredSteps;
         }
     }
-
-
 }
