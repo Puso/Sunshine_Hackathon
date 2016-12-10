@@ -5,6 +5,8 @@ const fs = require('fs');
 const path = require('path');
 const _ = require('lodash');
 
+const repos = require('../repositories/util').combine();
+
 const randomSteps = require('../../models/featurefiles/random.json');
 
 let combine = (stepsOnly = true) => {
@@ -17,14 +19,14 @@ let combine = (stepsOnly = true) => {
     let pathRoot = `${path.resolve(process.cwd())}\\models\\featurefiles\\basic`;
     let directories = fs.readdirSync(pathRoot);
     let fileContents = directories.map((i) => {
-            return Object.assign({fileName: i}, parseContents(fs.readFileSync(`${pathRoot}\\${i}`).toString(), stepsOnly));
+            let parsed = parseContents(fs.readFileSync(`${pathRoot}\\${i}`).toString(), stepsOnly);
+            return (parsed == null)? null : Object.assign({fileName: i}, parsed);
     });
-    
-    return fileContents.concat(createRandomData());
+    fileContents = fileContents.filter((f) => f !== null);
+    return fileContents.concat(createRandomData(stepsOnly));
 };
 
-let createRandomData = () => {
-    let repos = require('../repositories/util').combine();
+let createRandomData = (stepsOnly) => {
     let features = [];
     let featureCt = 50;
     while(featureCt >=0)
@@ -32,7 +34,9 @@ let createRandomData = () => {
         
         let fileId = Math.floor(Math.random() * (2000 - 1000) + 1000);
         let repoId = _.sample(repos).repositoryId;
-        let fileContent = [`@repo-${repoId}`, `@file-${fileId}`].concat(buildFileContent());
+        
+        let prepend = (stepsOnly)?[]: [`@repo-${repoId}`, `@file-${fileId}`];
+        let fileContent = prepend.concat(buildFileContent());
         features.push({
             fileName:`RandomFeature${featureCt}.feature`,
             fileId: fileId,
@@ -79,6 +83,10 @@ let parseContents = (contents, stepsOnly) => {
     let fileMatchs = fileIdRE.exec(strippedContents);
 
     let repoId = (repoMatches == null)? 0 : repoMatches[1];
+    if(_.findIndex(repos, (r) => r.repositoryId == repoId) == -1)
+    {
+        return null;
+    }
     let fileId = (fileMatchs == null)? 0 : fileMatchs[1];
 
     let ids = {repositoryId: repoId, fileId: fileId};
