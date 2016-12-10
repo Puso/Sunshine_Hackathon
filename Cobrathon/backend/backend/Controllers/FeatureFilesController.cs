@@ -17,6 +17,13 @@ namespace backend.Controllers
             var result = await etl.Process();
             return Ok(result);
         }
+
+        public async Task<IHttpActionResult> GetStepDefinitions(string partialText)
+        {
+            ETLRunner etl = new ETLRunner();
+            var result = await etl.GetSteps(partialText);
+            return Ok(result);
+        }
     }
 
 

@@ -114,5 +114,24 @@ namespace backend.ETL
             result.NumberOfStepsLoaded = (int)collection.Count(new BsonDocument());
             return result;
         }
+
+        public async Task<List<Step>> GetSteps(string partialText)
+        {
+            var client = new MongoClient();
+            var database = client.GetDatabase("KIHTB");
+            var collection = database.GetCollection<Step>(_collectionName);
+            await database.DropCollectionAsync(_collectionName);
+
+            var filter = Builders<Step>.Filter.Text(partialText);
+            // don't need to Include(x => x.TextMatchScore) because
+            //   it's already been included with MetaTextScore.
+            var projection = Builders<Step>.Projection.MetaTextScore("TextMatchScore")
+                .Include(x => x.FeatureFiles);
+
+            var sort = Builders<Step>.Sort.MetaTextScore("TextMatchScore");
+
+            var result = await collection.Find(filter).Project<Step>(projection).Sort(sort).ToListAsync();
+            return result;
+        }
     }
 }
