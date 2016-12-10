@@ -1,0 +1,35 @@
+{
+    "then":[
+        "Then I receive a not authenticated message",
+        "Then I receive an authenticated message",
+        "Then I wake up from the dream",
+        "Then the empire strikes back",
+        "Then I sing MMMBop",
+        "Then Derrick shouts 'Buy Ipreo'"
+    ],
+    "given":[
+        "Given I am a huge music fan",
+        "Given my bank account is on empty",
+        "Given I have stolen Zayna's cookies",
+        "Given I have left my computer unlocked",
+        "Given you can't resist the dark side"
+    ],
+    "when":[
+        "When my car breaks down at night",
+        "When I play the Hansen brothers",
+        "When I tell a really bad joke",
+        "When the olympics come to Raleigh",
+        "When Ipreo buys the Hurricanes"
+    ],
+    "and":[
+        "And I cash it all in",
+        "And the emporor appears draped in velvet",
+        "And I can't find the exit",
+        "And the results are clear"
+    ],
+    "but":[
+        "But it wasn't the right song",
+        "But Ipreo already owned the Durham Bulls",
+        "But the screen was fake"
+    ]
+}
