@@ -115,22 +115,13 @@ namespace backend.ETL
             return result;
         }
 
-        public async Task<List<FeatureFile>> GetSteps(string partialText)
+        public async Task<List<MongoEntry>> GetSteps()
         {
             var client = new MongoClient();
             var database = client.GetDatabase("KIHTB");
-            var collection = database.GetCollection<FeatureFile>(_collectionName);
-            await database.DropCollectionAsync(_collectionName);
-
-            var filter = Builders<FeatureFile>.Filter.Text(partialText);
-            // don't need to Include(x => x.TextMatchScore) because
-            //   it's already been included with MetaTextScore.
-            var projection = Builders<FeatureFile>.Projection.MetaTextScore("TextMatchScore")
-                .Include(x => x.FileContent);
-
-            var sort = Builders<FeatureFile>.Sort.MetaTextScore("TextMatchScore");
-
-            var result = await collection.Find(filter).Project<FeatureFile>(projection).Sort(sort).ToListAsync();
+            var collection = database.GetCollection<MongoEntry>(_collectionName);
+            
+            var result = await collection.Find(new BsonDocument()).ToListAsync();
             return result;
         }
     }

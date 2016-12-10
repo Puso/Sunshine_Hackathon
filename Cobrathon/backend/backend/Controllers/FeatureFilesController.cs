@@ -6,6 +6,7 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
+using backend.Models.ETL;
 
 namespace backend.Controllers
 {
@@ -18,22 +19,18 @@ namespace backend.Controllers
             return Ok(result);
         }
 
-        public async Task<List<string>> GetStepDefinitions(string partialText)
+        public async Task<List<MongoEntry>> GetStepDefinitions(string partialText)
         {
-            ETLRunner etl = new ETLRunner();
-            var result = await etl.GetSteps(partialText);
-            List<string> filteredSteps = new List<string>();
+           ETLRunner etl = new ETLRunner();
+            var result = await etl.GetSteps();
+            List<MongoEntry> filteredSteps = new List<MongoEntry>();
 
             foreach (var file in result)
             {
-                var count = file.NumberOfLines;
-                for (int i = 0; i < count; i++)
+                if (file.StepText.Contains(partialText))
                 {
-                    if (file.FileContent[i].Contains(partialText))
-                    {
-                        filteredSteps.Add(file.FileContent[i]);
-                    }
-                } 
+                    filteredSteps.Add(file);
+                }
             }
             return filteredSteps;
         }
