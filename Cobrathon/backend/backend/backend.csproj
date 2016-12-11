@@ -117,7 +117,7 @@
     <Compile Include="Models\ETL\FeatureFile.cs" />
     <Compile Include="Models\ETL\FeatureStep.cs" />
     <Compile Include="Models\ETL\FeatureSteps.cs" />
-    <Compile Include="Models\ETL\MongoEntry.cs" />
+    <Compile Include="Models\MongoEntry.cs" />
     <Compile Include="Models\ETL\MongoLoadResult.cs" />
     <Compile Include="Models\ETL\RepositoriesResponse.cs" />
     <Compile Include="Models\ETL\Repository.cs" />
