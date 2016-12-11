@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { StepData } from './stepData';
+import { StepData } from './step-data';
 
 @Component({ 
     selector: 'step-search',
