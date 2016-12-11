@@ -1,4 +1,5 @@
 ﻿using backend.Models.ETL;
+using backend.Models;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using System;
@@ -63,20 +64,20 @@ namespace backend.ETL
                 {
                     foreach (var content in files.FileContent)
                     {
-                        var index = transformedData.FindIndex(d => d.StepText == content && d.RepoName == repoName);
+                        var index = transformedData.FindIndex(d => d.stepText == content && d.repoName == repoName);
                         Console.WriteLine($"The index for {content} is {index}");
                         if (index == -1)
                         {
                             transformedData.Add(new MongoEntry()
                             {
-                                RepoName = repoName,
-                                StepText = content,
-                                NumOcurrences = 1
+                                repoName = repoName,
+                                stepText = content,
+                                numOcurrences = 1
                             });
                         }
                         else
                         {
-                            ++transformedData[index].NumOcurrences;
+                            ++transformedData[index].numOcurrences;
                         }
 
                     }
@@ -104,7 +105,7 @@ namespace backend.ETL
         {
             var result = new MongoLoadResult();
             result.NumberOfStepsToLoad = dataToLoad.Count;
-            var client = new MongoClient();//"mongodb://localhost:27017");
+            var client = new MongoClient();
             var database = client.GetDatabase("KIHTB");
             await database.DropCollectionAsync(_collectionName);
 
@@ -112,25 +113,6 @@ namespace backend.ETL
 
             await collection.InsertManyAsync(dataToLoad);
             result.NumberOfStepsLoaded = (int)collection.Count(new BsonDocument());
-            return result;
-        }
-
-        public async Task<List<Step>> GetSteps(string partialText)
-        {
-            var client = new MongoClient();
-            var database = client.GetDatabase("KIHTB");
-            var collection = database.GetCollection<Step>(_collectionName);
-            await database.DropCollectionAsync(_collectionName);
-
-            var filter = Builders<Step>.Filter.Text(partialText);
-            // don't need to Include(x => x.TextMatchScore) because
-            //   it's already been included with MetaTextScore.
-            var projection = Builders<Step>.Projection.MetaTextScore("TextMatchScore")
-                .Include(x => x.FeatureFiles);
-
-            var sort = Builders<Step>.Sort.MetaTextScore("TextMatchScore");
-
-            var result = await collection.Find(filter).Project<Step>(projection).Sort(sort).ToListAsync();
             return result;
         }
     }
