@@ -26,3 +26,8 @@ Cobrathon mongo
   * The dbpath above may need to be changed
   
 Once mongo, the vcs and the backend are running everthing should be good to go  
+
+Endpoints:
+
+localhost:58187/api/featurefiles/updatesteps
+localhost:58187/api/featurefiles/searchsteps/{search query}
