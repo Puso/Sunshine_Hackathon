@@ -1,0 +1,22 @@
+#title {
+    text-align: center;
+    color: black;
+}
+
+#wrapper {
+    padding: 0.5px;
+    margin: 0 auto;
+    padding: 0 auto;
+}
+#step {
+    display: inline-block;
+    width: 250px;
+    margin: 2%;
+    padding: 5px;
+}
+#feature {
+    display: inline-block;
+    width: 150px;
+    margin-left: 20%;
+    padding: 2px;
+}

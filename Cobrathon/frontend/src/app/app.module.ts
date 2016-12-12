@@ -11,7 +11,7 @@ import { FeatureDisplayComponent } from './feature-display.component';
   declarations: [
     AppComponent,
     StepSearchComponent,
-    FeatureDisplayComponent
+    FeatureDisplayComponent,
   ],
   imports: [
     BrowserModule,
