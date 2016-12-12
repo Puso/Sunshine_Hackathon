@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { StepData } from './step-data';
 
 import { StepDataService } from './step-data.service';
+import './rxjs-operators';
 
 
 @Component({
