@@ -11,7 +11,8 @@ import { StepDataService } from './step-data.service';
   providers: [StepDataService]
 })
 export class AppComponent {
-  constructor(private stepDataService:  StepDataService) {}  
+  constructor(private stepDataService:  StepDataService) {} 
+   
   getSteps(): void {
     this.steps = this.stepDataService.getSteps();
   }  
