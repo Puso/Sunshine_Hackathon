@@ -14,9 +14,9 @@
     margin: 2%;
     padding: 5px;
 }
-#scenario {
+#feature {
     display: inline-block;
     width: 150px;
-    margin: 1%;
+    margin-left: 20%;
     padding: 2px;
 }
