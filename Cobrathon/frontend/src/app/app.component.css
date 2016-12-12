@@ -1,9 +1,13 @@
+#title {
+    text-align: center;
+    color: black;
+}
+
 #wrapper {
-    padding: 25px;
+    padding: 0.5px;
     margin: 0 auto;
     padding: 0 auto;
 }
-
 #step {
     display: inline-block;
     width: 250px;
@@ -11,11 +15,8 @@
     padding: 5px;
 }
 #scenario {
+    display: inline-block;
     width: 150px;
     margin: 1%;
     padding: 2px;
-}
-#feature { 
-    display: inline-block;
-    padding: 70px
 }
