@@ -1,10 +1,10 @@
 import { Component, Input } from '@angular/core';
-// import { StepData } from './step-data';
+import { FeatureDisplayComponent } from './feature-display.component';
 
 @Component({
   selector: 'step-search',
   template: `
-    <div style="height:20px; 
+    <div class="app" style="height:20px; 
         width:320px;
         padding:5%"><label>Search steps: </label>
     <input #newLine
@@ -17,9 +17,9 @@ import { Component, Input } from '@angular/core';
         overflow:auto;
         border:2px solid lightgrey;
         padding:5%"><label>Create Scenario: </label>
-        <button (click)="addScenario(newScenario.values)"> Add to Feature</button>
+        <button (click)="addScenario([newScenario.values])"> Add to Feature</button>
     <ul><li *ngFor="let line of lines">{{line}}</li></ul></div>
-  `,
+    `,
 })
 
 export class StepSearchComponent {
@@ -32,7 +32,7 @@ export class StepSearchComponent {
         }
     }
 
-    newScenario = [];
+    public newScenario = [];
     addScenario(newScenario: string) {
         if(newScenario) {
             this.lines.push(newScenario);
