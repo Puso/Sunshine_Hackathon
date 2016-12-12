@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-// import { FeatureData } from './FeatureData';
+import { StepSearchComponent } from './step-search.component';
 
 export class Feature {
     id: number;
@@ -18,7 +18,7 @@ const FEATURES: Feature[] =[
     <div style="height:300px; 
         width:620px;
         overflow:auto;
-        border:2px solid lightgrey;
+        border:2px solid black;
         padding:2%">
     <ul class="features">
         <li *ngFor="let feature of features">
