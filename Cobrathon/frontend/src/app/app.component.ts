@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { StepData } from './step-data';
 
 import { StepDataService } from './step-data.service';
+import './rxjs-operators';
 
 
 @Component({
@@ -11,7 +12,8 @@ import { StepDataService } from './step-data.service';
   providers: [StepDataService]
 })
 export class AppComponent {
-  constructor(private stepDataService:  StepDataService) {}  
+  constructor(private stepDataService:  StepDataService) {} 
+   
   getSteps(): void {
     this.steps = this.stepDataService.getSteps();
   }  
