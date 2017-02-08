@@ -7,6 +7,8 @@ import { AppComponent } from './app.component';
 import { StepSearchComponent } from './step-search.component';
 import { FeatureDisplayComponent } from './feature-display.component';
 
+import { Ng2CompleterModule } from "ng2-completer";
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -16,7 +18,8 @@ import { FeatureDisplayComponent } from './feature-display.component';
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    Ng2CompleterModule
   ],
   providers: [],
   bootstrap: [AppComponent]
